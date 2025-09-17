@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Tugas 1 - Menghitung Luas (JavaScript)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f3f4f6;
+            margin: 0;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .card {
+            background: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2 {
+            margin-top: 0;
+        }
+
+        label {
+            display: block;
+            margin: 10px 0 5px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        button {
+            padding: 10px 20px;
+            background: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #45a049;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Tugas 1 - Menghitung Luas</h1>
+        <p>Masukkan nilai sisi, panjang, lebar, alas, dan tinggi untuk menghitung luas dari berbagai bangun.</p>
+
+        <div class="card">
+            <h2>Input Data</h2>
+            <label>Panjang persegi panjang:</label>
+            <input type="number" id="rectLength" placeholder="Masukkan panjang">
+
+            <label>Lebar persegi panjang:</label>
+            <input type="number" id="rectWidth" placeholder="Masukkan lebar">
+
+            <label>Sisi bujur sangkar:</label>
+            <input type="number" id="squareSide" placeholder="Masukkan sisi">
+
+            <label>Alas segitiga:</label>
+            <input type="number" id="triBase" placeholder="Masukkan alas">
+
+            <label>Tinggi segitiga:</label>
+            <input type="number" id="triHeight" placeholder="Masukkan tinggi">
+
+            <button onclick="calculateAreas()">Hitung Luas</button>
+        </div>
+
+        <div class="card" id="resultsCard" style="display: none;">
+            <h2>Hasil Perhitungan</h2>
+            <div id="results"></div>
+        </div>
+    </div>
+
+    <script>
+        // Fungsi menghitung luas persegi panjang
+        function areaRectangle(length, width) {
+            return length * width;
+        }
+
+        // Fungsi menghitung luas bujur sangkar
+        function areaSquare(side) {
+            return side * side;
+        }
+
+        // Fungsi menghitung luas segitiga
+        function areaTriangle(base, height) {
+            return 0.5 * base * height;
+        }
+
+        // Fungsi utama untuk menghitung berdasarkan input pengguna
+        function calculateAreas() {
+            const length = parseFloat(document.getElementById('rectLength').value) || 0;
+            const width = parseFloat(document.getElementById('rectWidth').value) || 0;
+            const side = parseFloat(document.getElementById('squareSide').value) || 0;
+            const base = parseFloat(document.getElementById('triBase').value) || 0;
+            const height = parseFloat(document.getElementById('triHeight').value) || 0;
+
+            // Hitung luas
+            const rectangleArea = areaRectangle(length, width);
+            const squareArea = areaSquare(side);
+            const triangleArea = areaTriangle(base, height);
+
+            // Tampilkan hasil
+            document.getElementById('results').innerHTML = `
+            <p><strong>Persegi Panjang:</strong> ${rectangleArea}</p>
+            <p><strong>Bujur Sangkar:</strong> ${squareArea}</p>
+            <p><strong>Segitiga:</strong> ${triangleArea}</p>
+        `;
+
+            // Tampilkan card hasil
+            document.getElementById('resultsCard').style.display = 'block';
+        }
+    </script>
+</body>
+
+</html>
