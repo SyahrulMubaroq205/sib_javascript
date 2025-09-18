@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Data Pegawai</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gray-100 min-h-screen flex flex-col items-center justify-center">
+
+    <div class="bg-white shadow-xl rounded-2xl overflow-hidden w-full max-w-5xl">
+        <!-- Data Pegawai -->
+        <div class="bg-blue-600 text-white text-center py-4">
+            <h1 class="text-2xl font-bold tracking-wide">Data Pegawai</h1>
+        </div>
+
+        <!-- Tabel -->
+        <table class="table-auto w-full border-collapse">
+            <thead class="bg-blue-100 text-blue-900">
+                <tr>
+                    <th class="px-6 py-3 text-left font-semibold">Nama Pegawai</th>
+                    <th class="px-6 py-3 text-left font-semibold">Umur</th>
+                    <th class="px-6 py-3 text-left font-semibold">Jabatan</th>
+                    <th class="px-6 py-3 text-left font-semibold">Status</th>
+                    <th class="px-6 py-3 text-left font-semibold">Gaji Pokok</th>
+                    <th class="px-6 py-3 text-left font-semibold">Tunjangan Jabatan</th>
+                    <th class="px-6 py-3 text-left font-semibold">BPJS</th>
+                    <th class="px-6 py-3 text-left font-semibold">Tunjangan Keluarga</th>
+                </tr>
+            </thead>
+            <!-- tbody kosong, nanti bisa di ubah ubah nilai nya yang ada di script atau javascript -->
+            <tbody id="dataPegawai" class="text-black"></tbody>
+            <tfoot class="bg-blue-50 font-semibold text-blue-900">
+                <tr>
+                    <td colspan="7" class="px-6 py-4 text-right">Total Gaji :</td>
+                    <td id="totalGaji" class="px-6 py-4"></td>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+
+    <script>
+        // Data Pegawai
+        let nama = "dodi prayodi";
+        let umur = 25;
+        let jabatan = "manajer";
+        let status = "menikah";
+
+        // Gaji Pokok (if)
+        let gapok;
+        if (jabatan.toLowerCase() === "manajer") {
+            gapok = 15000000;
+        } else if (jabatan.toLowerCase() === "asisten manajer") {
+            gapok = 10000000;
+        } else {
+            gapok = 5000000;
+        }
+
+        // Tunjangan Jabatan: 15% dari gaji pokok
+        let tunjanganJabatan = 0.15 * gapok;
+
+        // BPJS: 10% dari gaji pokok
+        let bpjs = 0.10 * gapok;
+
+        // Tunjangan Keluarga (ternary)
+        let tunjanganKeluarga = (status.toLowerCase() === "menikah") ? 0.90 * gapok : 0;
+
+        // Total Gaji
+        let totalGaji = gapok + tunjanganJabatan + bpjs + tunjanganKeluarga;
+
+        // Cetak ke tabel
+        document.getElementById("dataPegawai").innerHTML = `
+        <tr class="hover:bg-gray-50">
+            <td class="px-6 py-4">${nama}</td>
+            <td class="px-6 py-4">${umur} Tahun</td>
+            <td class="px-6 py-4 capitalize">${jabatan}</td>
+            <td class="px-6 py-4 capitalize">${status}</td>
+            <td class="px-6 py-4">Rp ${gapok.toLocaleString("id-ID")}</td>
+            <td class="px-6 py-4">Rp ${tunjanganJabatan.toLocaleString("id-ID")}</td>
+            <td class="px-6 py-4">Rp ${bpjs.toLocaleString("id-ID")}</td>
+            <td class="px-6 py-4">Rp ${tunjanganKeluarga.toLocaleString("id-ID")}</td>
+        </tr>
+    `;
+        // Cetak total gaji
+        document.getElementById("totalGaji").innerText = `Rp ${totalGaji.toLocaleString("id-ID")}`;
+    </script>
+
+</body>
+
+</html>
