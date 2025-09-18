@@ -53,8 +53,10 @@
             gapok = 15000000;
         } else if (jabatan.toLowerCase() === "asisten manajer") {
             gapok = 10000000;
-        } else {
+        } else if (jabatan.toLowerCase() === "staff") {
             gapok = 5000000;
+        } else {
+            gapok = 0;
         }
 
         // Tunjangan Jabatan: 15% dari gaji pokok
@@ -64,7 +66,7 @@
         let bpjs = 0.10 * gapok;
 
         // Tunjangan Keluarga (ternary)
-        let tunjanganKeluarga = (status.toLowerCase() === "menikah") ? 0.90 * gapok : 0;
+        let tunjanganKeluarga = (status.toLowerCase() === "menikah") ? 0.20 * gapok : 0;
 
         // Total Gaji
         let totalGaji = gapok + tunjanganJabatan + bpjs + tunjanganKeluarga;
