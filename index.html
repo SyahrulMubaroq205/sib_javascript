@@ -5,87 +5,23 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Tugas 1 - Menghitung Luas (JavaScript)</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            background: #f3f4f6;
-            margin: 0;
-            padding: 20px;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: auto;
-        }
-
-        .card {
-            background: white;
-            padding: 20px;
-            margin-bottom: 20px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-
-        h1,
-        h2 {
-            margin-top: 0;
-        }
-
-        label {
-            display: block;
-            margin-top: 10px;
-        }
-
-        input,
-        select,
-        button {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-        }
-
-        button {
-            padding: 10px 20px;
-            background: #4CAF50;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background: #45a049;
-        }
-
-        .hidden {
-            display: none;
-        }
-
-        #resultsCard {
-            max-width: 400px;
-            margin: 20px auto;
-            padding: 16px;
-            border: 1px solid #4CAF50;
-            border-radius: 10px;
-            background: #f9fff9;
-            display: none;
-        }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
 
-<body>
-    <div class="container">
-        <h1>Tugas 1 - Menghitung Luas</h1>
-        <p>Masukkan nilai sisi, panjang, lebar, alas, dan tinggi untuk menghitung luas dari berbagai bangun.</p>
+<body class="bg-blue-100 min-h-screen flex items-start justify-center p-6">
+    <div class="max-w-xl w-full">
+        <h1 class="text-2xl font-bold text-gray-800 mb-2">Tugas 1 - Menghitung Luas</h1>    
+        <p class="text-gray-600 mb-6">
+            Masukkan nilai sisi, panjang, lebar, alas, dan tinggi untuk menghitung luas dari berbagai bangun.
+        </p>
 
-        <div class="card">
-            <h2>Hitung Luas Bangun Datar</h2>
-            
+        <div class="bg-white shadow-lg rounded-xl p-6">
+            <h2 class="text-xl font-semibold text-gray-700 mb-4 text-center">Hitung Luas Bangun Datar</h2>
+
             <!-- Select Bangun Datar -->
-            <label for="shape">Pilih Bangun:</label>
-            <select id="shape" onchange="showInputs()">
+            <label for="shape" class="block text-gray-700 font-medium">Pilih Bangun:</label>
+            <select id="shape" onchange="showInputs()"
+                class="w-full mt-2 p-2 border rounded-lg focus:ring-2 focus:ring-green-400">
                 <option value="">-- Pilih --</option>
                 <option value="rect">Persegi Panjang</option>
                 <option value="square">Bujur Sangkar</option>
@@ -93,118 +29,127 @@
             </select>
 
             <!-- Persegi panjang -->
-            <div id="rectInputs" class="hidden">
-                <label>Panjang:</label>
-                <input type="number" id="rectLength" placeholder="Masukkan panjang">
-                <label>Lebar:</label>
-                <input type="number" id="rectWidth" placeholder="Masukkan lebar">
+            <div id="rectInputs" class="hidden mt-4">
+                <label class="block text-gray-700 font-medium">Panjang:</label>
+                <input type="number" id="rectLength" placeholder="Masukkan panjang"
+                    class="w-full p-2 border rounded-lg mt-2 focus:ring-2 focus:ring-green-400">
+
+                <label class="block text-gray-700 font-medium mt-3">Lebar:</label>
+                <input type="number" id="rectWidth" placeholder="Masukkan lebar"
+                    class="w-full p-2 border rounded-lg mt-2 focus:ring-2 focus:ring-green-400">
             </div>
 
             <!-- Bujur sangkar -->
-            <div id="squareInputs" class="hidden">
-                <label>Sisi:</label>
-                <input type="number" id="squareSide" placeholder="Masukkan sisi">
+            <div id="squareInputs" class="hidden mt-4">
+                <label class="block text-gray-700 font-medium">Sisi:</label>
+                <input type="number" id="squareSide" placeholder="Masukkan sisi"
+                    class="w-full p-2 border rounded-lg mt-2 focus:ring-2 focus:ring-green-400">
             </div>
 
             <!-- Segitiga -->
-            <div id="triInputs" class="hidden">
-                <label>Alas:</label>
-                <input type="number" id="triBase" placeholder="Masukkan alas">
-                <label>Tinggi:</label>
-                <input type="number" id="triHeight" placeholder="Masukkan tinggi">
+            <div id="triInputs" class="hidden mt-4">
+                <label class="block text-gray-700 font-medium">Alas:</label>
+                <input type="number" id="triBase" placeholder="Masukkan alas"
+                    class="w-full p-2 border rounded-lg mt-2 focus:ring-2 focus:ring-green-400">
+
+                <label class="block text-gray-700 font-medium mt-3">Tinggi:</label>
+                <input type="number" id="triHeight" placeholder="Masukkan tinggi"
+                    class="w-full p-2 border rounded-lg mt-2 focus:ring-2 focus:ring-green-400">
             </div>
 
-            <button onclick="calculateAreas()">Hitung Luas</button>
+            <!-- Button Hitung -->
+            <button onclick="calculateAreas()"
+                class="mt-6 w-full bg-green-500 hover:bg-green-600 text-white font-semibold py-2 px-4 rounded-lg shadow">
+                Hitung Luas
+            </button>
 
             <!-- Hasil -->
-            <div id="resultsCard">
-                <h3>Hasil Perhitungan:</h3>
-                <div id="results"></div>
+            <div id="resultsCard" class="hidden mt-6 bg-green-50 border border-green-400 rounded-lg p-4">
+                <h3 class="text-lg font-semibold text-green-700">Hasil Perhitungan:</h3>
+                <div id="results" class="text-gray-800 mt-2"></div>
             </div>
         </div>
+    </div>
 
+    <script>
+        // Fungsi menghitung luas persegi panjang
+        function areaRectangle(length, width) {
+            return length * width;
+        }
 
-        <script>
-            // Fungsi menghitung luas persegi panjang
-            function areaRectangle(length, width) {
-                return length * width;
+        // Fungsi menghitung luas bujur sangkar
+        function areaSquare(side) {
+            return side * side;
+        }
+
+        // Fungsi menghitung luas segitiga
+        function areaTriangle(base, height) {
+            return 0.5 * base * height;
+        }
+
+        // Menampilkan input sesuai pilihan bangun
+        function showInputs() {
+            const shape = document.getElementById('shape').value;
+            document.getElementById('rectInputs').classList.add('hidden');
+            document.getElementById('squareInputs').classList.add('hidden');
+            document.getElementById('triInputs').classList.add('hidden');
+
+            // reset hasil setiap kali ganti pilihan
+            document.getElementById('resultsCard').classList.add('hidden');
+            document.getElementById('results').innerHTML = '';
+
+            if (shape === 'rect') {
+                document.getElementById('rectInputs').classList.remove('hidden');
+            } else if (shape === 'square') {
+                document.getElementById('squareInputs').classList.remove('hidden');
+            } else if (shape === 'tri') {
+                document.getElementById('triInputs').classList.remove('hidden');
+            }
+        }
+
+        // Fungsi utama untuk menghitung luas berdasarkan input
+        function calculateAreas() {
+            const shape = document.getElementById('shape').value;
+            let result = 0;
+            let text = '';
+
+            if (shape === 'rect') {
+                const length = parseFloat(document.getElementById('rectLength').value || 0);
+                const width = parseFloat(document.getElementById('rectWidth').value || 0);
+                result = areaRectangle(length, width);
+                text = `
+                    Bangun: Persegi Panjang<br>
+                    Panjang: ${length}<br>
+                    Lebar: ${width}<br>
+                    Luas: ${result} cm²
+                `;
+            } else if (shape === 'square') {
+                const side = parseFloat(document.getElementById('squareSide').value || 0);
+                result = areaSquare(side);
+                text = `
+                    Bangun: Bujur Sangkar<br>
+                    Sisi: ${side}<br>
+                    Luas: ${result} cm²
+                `;
+            } else if (shape === 'tri') {
+                const base = parseFloat(document.getElementById('triBase').value || 0);
+                const height = parseFloat(document.getElementById('triHeight').value || 0);
+                result = areaTriangle(base, height);
+                text = `
+                    Bangun: Segitiga<br>
+                    Alas: ${base}<br>
+                    Tinggi: ${height}<br>
+                    Luas: ${result} cm²
+                `;
+            } else {
+                text = 'Pilih bangun terlebih dahulu.';
             }
 
-            // Fungsi menghitung luas bujur sangkar
-            function areaSquare(side) {
-                return side * side;
-            }
-
-            // Fungsi menghitung luas segitiga
-            function areaTriangle(base, height) {
-                return 0.5 * base * height;
-            }
-
-            // Menampilkan input sesuai pilihan bangun
-            function showInputs() {
-                const shape = document.getElementById('shape').value;
-                document.getElementById('rectInputs').classList.add('hidden');
-                document.getElementById('squareInputs').classList.add('hidden');
-                document.getElementById('triInputs').classList.add('hidden');
-
-                // reset hasil setiap kali ganti pilihan
-                document.getElementById('resultsCard').style.display = 'none';
-                document.getElementById('results').innerHTML = '';
-
-                if (shape === 'rect') {
-                    document.getElementById('rectInputs').classList.remove('hidden');
-                } else if (shape === 'square') {
-                    document.getElementById('squareInputs').classList.remove('hidden');
-                } else if (shape === 'tri') {
-                    document.getElementById('triInputs').classList.remove('hidden');
-                }
-            }
-
-            // Fungsi utama untuk menghitung luas berdasarkan input
-            function calculateAreas() {
-                const shape = document.getElementById('shape').value;
-                let result = 0;
-                let text = '';
-
-                if (shape === 'rect') {
-                    const length = parseFloat(document.getElementById('rectLength').value || 0);
-                    const width = parseFloat(document.getElementById('rectWidth').value || 0);
-                    result = areaRectangle(length, width);
-                    text = `
-                Bangun: Persegi Panjang<br>
-                Panjang: ${length}<br>
-                Lebar: ${width}<br>
-                Luas: ${result} cm²
-            `;
-                } else if (shape === 'square') {
-                    const side = parseFloat(document.getElementById('squareSide').value || 0);
-                    result = areaSquare(side);
-                    text = `
-                Bangun: Bujur Sangkar<br>
-                Sisi: ${side}<br>
-                Luas: ${result} cm²
-            `;
-                } else if (shape === 'tri') {
-                    const base = parseFloat(document.getElementById('triBase').value || 0);
-                    const height = parseFloat(document.getElementById('triHeight').value || 0);
-                    result = areaTriangle(base, height);
-                    text = `
-                Bangun: Segitiga<br>
-                Alas: ${base}<br>
-                Tinggi: ${height}<br>
-                Luas: ${result} cm²
-            `;
-                } else {
-                    text = 'Pilih bangun terlebih dahulu.';
-                }
-
-                // tampilkan hasil
-                document.getElementById("results").innerHTML = `<p>${text}</p>`;
-                document.getElementById('resultsCard').style.display = 'block';
-            }
-        </script>
-
-
+            // tampilkan hasil
+            document.getElementById("results").innerHTML = `<p>${text}</p>`;
+            document.getElementById('resultsCard').classList.remove('hidden');
+        }
+    </script>
 </body>
 
 </html>
