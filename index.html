@@ -47,7 +47,7 @@
         let jabatan = "manajer";
         let status = "menikah";
 
-        // Gaji Pokok (if)
+        // Gaji Pokok
         let gapok;
         if (jabatan.toLowerCase() === "manajer") {
             gapok = 15000000;
@@ -65,7 +65,7 @@
         // BPJS: 10% dari gaji pokok
         let bpjs = 0.10 * gapok;
 
-        // Tunjangan Keluarga (ternary)
+        // Tunjangan Keluarga 20% (ternary)
         let tunjanganKeluarga = (status.toLowerCase() === "menikah") ? 0.20 * gapok : 0;
 
         // Total Gaji
