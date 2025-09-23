@@ -41,7 +41,6 @@ function deleteProduct(index) {
   renderProducts();
 }
 
-// --- Contoh penggunaan ---
 renderProducts();              
 addProduct("Flashdisk", 75000); // tambah produk
 deleteProduct(2);              // hapus produk ke-3 (index 2) dimulai dari 0 index nya
